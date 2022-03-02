@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>To Do List</title>
+  <link
+  rel="stylesheet" 
+  href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+  integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+  crossorigin="anonymous"/>
+  <link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+<body>
+  <div id="alert"></div>
+  <h1 id="greeting" style="text-align: center">To Do List</h1>
+  <h2 id="info"></h2>
+  <div class="container mt-5">
+    <div  class="col-sm-12 offset-sm-12" >
+      <div>
+        <form id="userForm">
+          <div class="input-group mb-2">
+            <input
+            name="todo"
+            id="todo"
+            type="text"
+            class="form-control"
+            placeholder="What will you do today?"
+            aria-label="What will you do today?"
+            aria-describedby="button-addon2"
+            />
+            <button
+            class="btn btn-outline-success"
+            for="success-outlined"
+            onclick="addAll()"
+            >
+            Add
+          </button>
+        </form>     
+      </div>
+    </div>
+    <div align = "right">
+      <button
+      class="btn btn-outline-danger"
+      for="danger-outlined"
+      id="clear"
+      onclick="clearAll()"
+      >
+      Clean All
+    </button>
+  </div>
+</div>
+<div class="col-sm-12 offset-sm-12 mt-4">
+  <div id="todolist">
+  </div>
+</div>
+</div>
+</div>
+<script src="todo.js"></script>
+</body>
+</html>
