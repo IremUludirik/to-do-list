@@ -1,6 +1,6 @@
 //alert type
 let alertDOM = document.querySelector(`#alert`); //alerti asagida belirttik ve sitede cikmasini sagliyoruz
- 
+
 //boş girilirse
 const alertFunction = (message, className = "warning") => `
 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">  
@@ -11,8 +11,6 @@ const alertFunction = (message, className = "warning") => `
 
 <div class="alert alert-${className} alert-dismissible fade show" role="alert">
 <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
-<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-<span aria-hidden="true">&times;</span>
 </button>${message}
 </div>
 `;
@@ -27,13 +25,11 @@ const alertFunctionAdd = (message, className = "success") => `
 
 <div class="alert alert-${className} alert-dismissible fade show" role="alert">
 <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
-<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-<span aria-hidden="true">&times;</span>
 </button>${message}
 </div>
 `;
 
-//clear all 
+//clear all
 const alertFunctionRemove = (message, className = "danger") => `
 <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
 <symbol id="exclamation-triangle-fill" fill="currentColor" viewBox="0 0 16 16">
@@ -43,8 +39,6 @@ const alertFunctionRemove = (message, className = "danger") => `
 
 <div class="alert alert-${className} alert-dismissible fade show" role="alert">
 <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
-<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-<span aria-hidden="true">&times;</span>
 </button>${message}
 </div>
 `;
@@ -52,15 +46,20 @@ const alertFunctionRemove = (message, className = "danger") => `
 //alert
 function formHandler(event) {
   event.preventDefault();
-  const TO_DO = document.querySelector("#todo");  
-  
+  const TO_DO = document.querySelector("#todo");
+
   if (TO_DO.value) {
     addItem(TO_DO.value); //addItemı Aşagida tanimladik.
     TO_DO.value = ""; //kutucugun icini otomatik sifirlanmasi icin
     alertDOM.innerHTML = alertFunctionAdd("You entered information!");
-    
-  } else  {
-    alertDOM.innerHTML = alertFunction("You entered incorrect information!");
+    setInterval(() => {
+      alertDOM.innerHTML = "";
+    }, 3000);
+  } else {
+    alertDOM.innerHTML = alertFunction("You can't submit empty form!");
+    setInterval(() => {
+      alertDOM.innerHTML = "";
+    }, 5000);
     //hata verdiginde alerti cagiriyoruz
   }
 }
@@ -69,37 +68,38 @@ let todolistDom = document.querySelector(`#todolist`);
 
 const addItem = (todo) => {
   let liDOM = document.createElement(`li`);
-  
+
   liDOM.innerHTML = `
-  <div class="form-check">
-  <input class="form-check-input" type="checkbox" value="" id="flexCheckIndeterminate">
+<div class="form-check">
+<input class="form-check-input" type="checkbox" value="" id="flexCheckIndeterminate">
   <label class="form-check-label" for="flexCheckIndeterminate">
   </label>
   </div>
   <a href="#todolist" class="list-group-item list-group-item-action list-group-item-light">${todo}</a>
   `;
-  
+
   liDOM.classList.add(
     `list-group-item`,
     `d-flex`,
     `justify-content-between`,
     `align-items-center`
-    );
-    // listeye göre uyarladik
-    
-    todolistDom.append(liDOM);
-  };
-  
-  function addAll() {
-    let userFormDom = document.querySelector(`#userForm`);
-    userFormDom.addEventListener(`submit`, formHandler);
-  }
-  
-  function clearAll() {
-    document.getElementById("todolist").innerHTML = "";
-    alertDOM.innerHTML = alertFunctionRemove("You deleted the whole list!");
-    
-    const TO_DO = document.querySelector("#todo");
-    TO_DO.value = ""; //kutucugun icini otomatik sifirlanmasi icin
-  }
-  
+  );
+  // listeye göre uyarladik
+
+  todolistDom.append(liDOM);
+};
+
+function addAll() {
+  let userFormDom = document.querySelector(`#userForm`);
+  userFormDom.addEventListener(`submit`, formHandler);
+}
+
+function clearAll() {
+  document.getElementById("todolist").innerHTML = "";
+  alertDOM.innerHTML = alertFunctionRemove("You deleted the whole list!");
+  setInterval(() => {
+    alertDOM.innerHTML = "";
+  }, 3000);
+  const TO_DO = document.querySelector("#todo");
+  TO_DO.value = ""; //kutucugun icini otomatik sifirlanmasi icin
+}

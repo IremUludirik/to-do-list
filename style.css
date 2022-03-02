@@ -1,3 +1,23 @@
-body{
-    background-color: rgb(255, 255, 255);
+body {
+  background-color: rgb(255, 255, 255);
+}
+
+.todo-wrapper {
+  padding-bottom: 50px;
+}
+
+.todo-wrapper__head {
+  border-bottom: 1px solid #000;
+  padding-bottom: 50px;
+}
+
+#todo,
+.my-add-button,
+.myClean-button {
+  width: 100%;
+  display: block;
+}
+
+#todo {
+  margin-bottom: 50px;
 }
