@@ -1,5 +1,5 @@
 # To Do List
 
-https://iremuludirik.github.io/todo-list/
+https://iremuludirik.github.io/to-do-list/
 
 
