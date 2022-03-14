@@ -66,6 +66,8 @@ function formHandler(event) {
 
 let todolistDom = document.querySelector(`#todolist`);
 
+const li = localStorage.getItem('li');
+
 const addItem = (todo) => {
   let liDOM = document.createElement(`li`);
 
@@ -77,6 +79,11 @@ const addItem = (todo) => {
   </div>
   <a href="#todolist" class="list-group-item list-group-item-action list-group-item-light">${todo}</a>
   `;
+  
+  window.localStorage.setItem('li',todo)
+
+  
+
 
   liDOM.classList.add(
     `list-group-item`,
